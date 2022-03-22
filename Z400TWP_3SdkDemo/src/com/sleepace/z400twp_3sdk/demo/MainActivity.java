@@ -216,7 +216,7 @@ public class MainActivity extends BaseActivity {
 	
 	private OnlineStateListener onlineStateListener = new OnlineStateListener() {
 		@Override
-		public void onlineStateChanged(byte onlineState) {
+		public void onlineStateChanged(final short deviceType, final String deviceId, final byte onlineState) {
 			// TODO Auto-generated method stub
 			deviceOnline = onlineState == 1;
 		}

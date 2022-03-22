@@ -133,7 +133,7 @@ public class DeviceFragment extends BaseFragment {
 	
 	private OnlineStateListener onlineStateListener = new OnlineStateListener() {
 		@Override
-		public void onlineStateChanged(final byte onlineState) {
+		public void onlineStateChanged(final short deviceType, final String deviceId, final byte onlineState) {
 			// TODO Auto-generated method stub
 			//注意，这个回调在子线程中
 			SdkLog.log(TAG+" onlineStateChanged state:" + onlineState);
