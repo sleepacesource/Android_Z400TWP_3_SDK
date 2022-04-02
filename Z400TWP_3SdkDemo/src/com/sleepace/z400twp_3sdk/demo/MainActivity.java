@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
 	public static boolean deviceOnline = false;
 	public static final int userId = 33131;
 //	public static final String deviceId = "y24mlthq3fxga"; //7klkgdpedxyfx
-	public static String deviceId = "";
+	public static String deviceId = "7klkgdpedxyfx";
 	public static short deviceType;
 	
 	private final int requestCode = 101;//权限请求码

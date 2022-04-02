@@ -22,7 +22,7 @@ public class DemoApp extends Application {
         instance = this;
         CrashHandler.getInstance().init(this);
         String tag = "Z400TWP_3SDKDemo";
-        String dir = getExternalFilesDir(null) + "/" + tag;
+        String dir = getExternalFilesDir(null) + "/log";
         SdkLog.setLogTag(tag);
         SdkLog.setLogDir(dir);
         SdkLog.setLogEnable(true);

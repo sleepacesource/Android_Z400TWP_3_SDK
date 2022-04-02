@@ -67,6 +67,22 @@ public class LoginFragment extends BaseFragment {
 		etChannelId = (EditText) root.findViewById(R.id.et_channel_id);
 		etDeviceId = (EditText) root.findViewById(R.id.et_device_id);
 		etVersion = (EditText) root.findViewById(R.id.et_device_version);
+		root.findViewById(R.id.btn_device_version).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				HashMap<String, Object> args = new HashMap<String, Object>();
+				args.put("channelId", etChannelId.getText().toString());
+				args.put("lan", "zh-cn");
+				wifiDeviceSdkHelper.getlastFirmwareVersion(args, new IResultCallback<Void>() {
+					@Override
+					public void onResultCallback(CallbackData<Void> cd) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+			}
+		});;
 	}
 
 	protected void initListener() {
@@ -98,12 +114,12 @@ public class LoginFragment extends BaseFragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-//		String serverHost = mSetting.getString("serverHost", "http://120.24.68.136:8091");
-		String serverHost = mSetting.getString("serverHost", "http://172.14.1.100:8091");
+		String serverHost = mSetting.getString("serverHost", "http://120.24.68.136:8091");
+//		String serverHost = mSetting.getString("serverHost", "http://172.14.1.100:8091");
 		etServerAddress.setText(serverHost);
-		String token = mSetting.getString("token", "");
+		String token = mSetting.getString("token", "test");
 		etToken.setText(token);
-		String channelId = mSetting.getString("channelId", "20489");
+		String channelId = mSetting.getString("channelId", "10000");
 		etChannelId.setText(channelId);
 		String deviceId = mSetting.getString("deviceId", MainActivity.deviceId);
 		etDeviceId.setText(deviceId);
