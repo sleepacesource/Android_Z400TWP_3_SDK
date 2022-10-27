@@ -72,7 +72,7 @@ public class LoginFragment extends BaseFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				HashMap<String, Object> args = new HashMap<String, Object>();
-				args.put("channelId", etChannelId.getText().toString());
+				args.put("channelId", "53500");
 				args.put("lan", "zh-cn");
 				wifiDeviceSdkHelper.getlastFirmwareVersion(args, new IResultCallback<Void>() {
 					@Override

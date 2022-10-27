@@ -10,6 +10,7 @@ import com.sleepace.sdk.z400twp.Z400TWPManager.OnlineStateListener;
 import com.sleepace.sdk.z400twp.Z400TWPManager.RealtimeDataListener;
 import com.sleepace.sdk.z400twp.Z400TWPManager.RealtimeSleepStateListener;
 import com.sleepace.sdk.z400twp.Z400TWPManager.SleepReportUploadStateListener;
+import com.sleepace.sdk.z400twp.Z400TWPManager.WiFiSignalListener;
 import com.sleepace.sdk.z400twp.constants.SleepStatusType;
 import com.sleepace.sdk.z400twp.domain.CollectState;
 import com.sleepace.sdk.z400twp.domain.EnvironmentData;
@@ -30,7 +31,7 @@ public class DeviceFragment extends BaseFragment {
 	
 	private Button btnStartRealtimeData, btnStopRealtimeData, btnStopCollect, btnQueryEnvirData, btnQueryOnlineState, btnQuerySleepState;
 	private TextView tvSleepState, tvHeartRate, tvBreathRate, /*tvTemp, tvHumidity,*/ tvCurTemp, tvCurHumidity, tvCurOnlineState, tvCurSleepState,
-		tvCurRealtimeSleepState;
+		tvCurRealtimeSleepState,tvWiFiSignal;
 	private Z400TWPHelper z400twpHelper;
 
 	@Override
@@ -66,6 +67,7 @@ public class DeviceFragment extends BaseFragment {
 		tvCurOnlineState = (TextView) root.findViewById(R.id.tv_device_online_state);
 		tvCurSleepState = (TextView) root.findViewById(R.id.tv_cur_sleep_state);
 		tvCurRealtimeSleepState = (TextView) root.findViewById(R.id.tv_cur_realtime_sleep_state);
+		tvWiFiSignal = (TextView) root.findViewById(R.id.tv_wifi_signal);
 	}
 
 
@@ -94,6 +96,25 @@ public class DeviceFragment extends BaseFragment {
 		z400twpHelper.registSleepReportUploadStateListener(sleepReportUploadStateListener);
 		z400twpHelper.registRealtimeDataListener(realtimeDataListener);
 		z400twpHelper.registRealtimeSleepStateListener(realtimeSleepStateListener);
+		z400twpHelper.registWiFiSignalListener(wiFiSignalListener);
+		
+		z400twpHelper.getWiFiSignalInfo(MainActivity.deviceType, MainActivity.deviceId, new IResultCallback<Byte>() {
+			@Override
+			public void onResultCallback(final CallbackData<Byte> cd) {
+				// TODO Auto-generated method stub
+				if(isAdded()) {
+					mActivity.runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							if(cd.isSuccess()) {
+								initWiFiSignal(cd.getResult());
+							}
+						}
+					});
+				}
+			}
+		});
 	}
 	
 	@Override
@@ -104,6 +125,7 @@ public class DeviceFragment extends BaseFragment {
 		z400twpHelper.unregistSleepReportUploadStateListener(sleepReportUploadStateListener);
 		z400twpHelper.unregistRealtimeDataListener(realtimeDataListener);
 		z400twpHelper.unregistRealtimeSleepStateListener(realtimeSleepStateListener);
+		z400twpHelper.unregistWiFiSignalListener(wiFiSignalListener);
 	}
 	
 	@Override
@@ -111,6 +133,29 @@ public class DeviceFragment extends BaseFragment {
 		// TODO Auto-generated method stub
 		super.onDestroyView();
 		SdkLog.log(TAG+" onDestroyView----------------");
+	}
+	
+	
+	private WiFiSignalListener wiFiSignalListener = new WiFiSignalListener() {
+		@Override
+		public void onWiFiSignalChanged(final String deviceId, final byte signal) {
+			// TODO Auto-generated method stub
+			if(isAdded()) {
+				mActivity.runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						if(deviceId.equals(MainActivity.deviceId)) {
+							initWiFiSignal(signal);
+						}
+					}
+				});
+			}
+		}
+	};
+	
+	private void initWiFiSignal(int signal) {
+		tvWiFiSignal.setText(String.valueOf(signal));
 	}
 	
 	/**

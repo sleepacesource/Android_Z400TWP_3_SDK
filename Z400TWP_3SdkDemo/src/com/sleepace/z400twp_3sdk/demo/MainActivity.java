@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
 		findView();
 		initListener();
 		initUI();
-		checkPermissions();
+//		checkPermissions();
 	}
 	
 	private void checkPermissions() {

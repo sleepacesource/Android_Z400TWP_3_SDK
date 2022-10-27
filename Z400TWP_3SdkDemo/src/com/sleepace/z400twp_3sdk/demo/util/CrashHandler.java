@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.SystemClock;
+import android.util.Log;
 
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
@@ -25,6 +27,8 @@ import android.os.SystemClock;
 public class CrashHandler implements UncaughtExceptionHandler {
 
 	public static final String TAG = CrashHandler.class.getSimpleName();
+	
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 
 	// 系统默认的UncaughtException处理类
 	private Thread.UncaughtExceptionHandler mDefaultHandler;
@@ -144,7 +148,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		printWriter.close();
 		String result = writer.toString();
 		sb.append(result);
-		SdkLog.log(sb);
+		
+		String fileName = "err_" + dateFormat.format(new Date()) + ".log";
+		String log = sb.toString();
+		Log.e(TAG, log);
+		SdkLog.saveLog(fileName, log);
 	}
 }
 

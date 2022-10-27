@@ -287,6 +287,32 @@
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/query_device_online_state" />
+        
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/wifi_signal"
+                android:textColor="@color/COLOR_4"
+                android:textSize="@dimen/Title_3" />
+
+            <TextView
+                android:id="@+id/tv_wifi_signal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/COLOR_3"
+                android:textSize="@dimen/Title_3" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_query_sleep_state"

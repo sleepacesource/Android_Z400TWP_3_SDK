@@ -131,4 +131,5 @@
   <string name="label_humidity">湿度</string>
   <string name="err_not_connect_server">未连接服务器，操作失败</string>
   <string name="err_device_offline">设备未在线，操作失败</string>
+  <string name="wifi_signal">WiFi信号强度</string>
 </resources>
