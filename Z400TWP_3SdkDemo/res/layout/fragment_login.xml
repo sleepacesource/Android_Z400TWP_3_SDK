@@ -114,6 +114,6 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="10dp"
-        android:text="查询最新固件信息" />
+        android:text="@string/latest_firmware_version" />
 
 </LinearLayout>

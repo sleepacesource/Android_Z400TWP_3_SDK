@@ -12,6 +12,7 @@ import com.sleepace.sdk.util.SdkLog;
 import com.sleepace.sdk.wifidevice.WiFiDeviceSdkHelper;
 import com.sleepace.sdk.wifidevice.bean.DeviceInfo;
 import com.sleepace.sdk.wifidevice.bean.IdentificationBean;
+import com.sleepace.sdk.wifidevice.bean.UpgradeInfo;
 import com.sleepace.sdk.z400twp.Z400TWPHelper;
 import com.sleepace.z400twp_3sdk.demo.MainActivity;
 import com.sleepace.z400twp_3sdk.demo.R;
@@ -71,16 +72,32 @@ public class LoginFragment extends BaseFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				HashMap<String, Object> args = new HashMap<String, Object>();
-				args.put("channelId", "53500");
-				args.put("lan", "zh-cn");
-				wifiDeviceSdkHelper.getlastFirmwareVersion(args, new IResultCallback<Void>() {
-					@Override
-					public void onResultCallback(CallbackData<Void> cd) {
-						// TODO Auto-generated method stub
-						
-					}
-				});
+				String channelId = etChannelId.getText().toString().trim();
+				if(!TextUtils.isEmpty(channelId)) {
+					HashMap<String, Object> args = new HashMap<String, Object>();
+					args.put("channelId", channelId);
+					args.put("lan", "zh-cn");
+					wifiDeviceSdkHelper.getlastFirmwareVersion(args, new IResultCallback<List<UpgradeInfo>>() {
+						@Override
+						public void onResultCallback(final CallbackData<List<UpgradeInfo>> cd) {
+							// TODO Auto-generated method stub
+							if (ActivityUtil.isActivityAlive(mActivity)) {
+								mActivity.runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										if (cd.isSuccess()) {
+											List<UpgradeInfo> list = cd.getResult();
+											Toast.makeText(mActivity, list.toString(), Toast.LENGTH_SHORT).show();
+										} else {
+											Toast.makeText(mActivity, R.string.failure, Toast.LENGTH_SHORT).show();
+										}
+									}
+								});
+							}
+						}
+					});
+				}
 			}
 		});;
 	}
@@ -219,6 +236,7 @@ public class LoginFragment extends BaseFragment {
 									if (cd.isSuccess()) {
 										Toast.makeText(mActivity, R.string.connect_server_success, Toast.LENGTH_SHORT).show();
 										IdentificationBean bean = (IdentificationBean) cd.getResult();
+										MainActivity.userId = bean.getUserId();
 										ip = bean.getIp();
 										port = bean.getPort();
 										sid = bean.getSid();

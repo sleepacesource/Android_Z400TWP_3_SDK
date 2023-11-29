@@ -131,4 +131,26 @@
   <string name="err_not_connect_server">Server not connected, operation failed</string>
   <string name="err_device_offline">Device not online, operation failed</string>
   <string name="wifi_signal">WiFi signal strength</string>
+  <string name="excessive_movement">Excessive Movement</string>
+  <string name="excessive_get_Up">Excessive Get Up</string>
+  <string name="excessive_sleep_duration">Excessive Sleep Duration</string>
+  <string name="low_sleep_effectiveness">Low Sleep Effectiveness</string>
+  <string name="actual_sleep_duration">Actual Sleep Duration</string>
+  <string name="total_sleep_duration">Total Sleep Duration</string>
+  <string name="time_to_fall_asleep">Time to Fall Asleep</string>
+  <string name="avg_heart_rate">Avg.Heart Rate</string>
+  <string name="avg_respiratory_rate">Avg.Respiratory Rate </string>
+  <string name="ahi">AHI</string>
+  <string name="max_apnea_duration">Max Apnea/Hypopnea Duration</string>
+  <string name="head_apnea_duration">Head Apnea Duration</string>
+  <string name="head_apnea_events">Head Apnea Events</string>
+  <string name="csa_duration">CSA Duration</string>
+  <string name="events_of_csa">Events of CSA</string>
+  <string name="max_csa_duration">Max CSA Duration</string>
+  <string name="osa_duration">OSA Duration</string>
+  <string name="events_of_osa">Events of OSA</string>
+  <string name="max_osa_duration">Max OSA Duration</string>
+  <string name="unit_ahi">events/h</string>
+  <string name="algorithm_version">Algorithm Version</string>
+  <string name="latest_firmware_version">Latest Firmware Version</string>
 </resources>
