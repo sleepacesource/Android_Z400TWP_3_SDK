@@ -141,7 +141,7 @@
   <string name="avg_heart_rate">Avg.Heart Rate</string>
   <string name="avg_respiratory_rate">Avg.Respiratory Rate </string>
   <string name="ahi">AHI</string>
-  <string name="max_apnea_duration">Max Apnea/Hypopnea Duration</string>
+  <string name="distribution_apnea_events">Distribution of apneas</string>
   <string name="head_apnea_duration">Head Apnea Duration</string>
   <string name="head_apnea_events">Head Apnea Events</string>
   <string name="csa_duration">CSA Duration</string>
